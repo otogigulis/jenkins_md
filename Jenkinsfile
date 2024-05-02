@@ -5,7 +5,7 @@ pipeline {
         stage('install-pip-deps') {
             steps {
                 echo 'installing all dependencies'
-                git clone https://github.com/mtararujs/python-greetings
+                git branch: 'main', url: 'https://github.com/mtararujs/python-greetings'
                 ls -la
                 pip3 install -r requirements.txt 
             }
