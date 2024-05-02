@@ -6,9 +6,8 @@ pipeline {
             steps {
                 echo 'installing all dependencies'
                 git branch: 'main', url: 'https://github.com/mtararujs/python-greetings'
-                def output = sh(returnStdout: true, script: 'ls -la')
-                echo "Output: ${output}"
-                script: 'pip3 install -r requirements.txt'
+                sh ls -la
+                sh pip3 install -r requirements.txt
             }
         }
         stage('deploy-to-dev') {
