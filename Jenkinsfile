@@ -14,7 +14,7 @@ pipeline {
             steps {
                 echo 'deploying to development environment'
                 git branch: 'main', url: 'https://github.com/mtararujs/python-greetings'
-                pm2 delete greetings-app-deploy-to-dev || true
+                sh 'pm2 delete greetings-app-deploy-to-dev || true'
             }
         }
         stage('tests-on-dev') {
