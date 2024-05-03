@@ -27,6 +27,8 @@ pipeline {
             steps {
                 echo 'testing in development environment'
                 git branch: 'main', url: 'https://github.com/mtararujs/course-js-api-framework'
+                sh 'npm install'
+                sh 'npm run greetings greetings_dev'
                 
             }
         }
