@@ -17,10 +17,6 @@ pipeline {
             steps {
                 echo 'deploying to development environment'
                 git branch: 'main', url: 'https://github.com/mtararujs/python-greetings'
-                sh 'echo "$PATH"'
-                sh 'export PATH=/opt/homebrew/opt/openjdk/bin:/opt/homebrew/opt/openjdk/bin:/usr/local/bin/node:/Library/Frameworks/Python.framework/Versions/3.12/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin'
-                sh 'echo "$PATH"'
-                sh 'npm install pm2 -g'
                 sh 'pm2 delete greetings-app-dev || true'
                 sh 'pm2 start app.py --name greetings-app-dev -- --port 7001'
             }
