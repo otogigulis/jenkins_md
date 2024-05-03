@@ -18,6 +18,7 @@ pipeline {
                 echo 'deploying to development environment'
                 git branch: 'main', url: 'https://github.com/mtararujs/python-greetings'
                 dir('python-greetings'){
+                sh 'git switch -d 4e911440a9886c7c26ccbb4eb55f0bc2a5067b51'
                 sh 'pm2 delete greetings-app-dev || true'
                 sh 'pm2 start app.py --name greetings-app-dev -- --port 7001'
                 }
