@@ -1,6 +1,9 @@
 pipeline {
     agent any
 
+    environment{
+        PATH=/opt/homebrew/opt/openjdk/bin:/opt/homebrew/opt/openjdk/bin:/usr/local/bin/node:/Library/Frameworks/Python.framework/Versions/3.12/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin
+    }
     stages {
         stage('install-pip-deps') {
             steps {
