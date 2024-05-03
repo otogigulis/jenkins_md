@@ -38,6 +38,7 @@ pipeline {
                 echo 'deploying to staging environment'
                 git branch: 'main', url: 'https://github.com/mtararujs/python-greetings'
                 dir('python-greetings'){
+                sh 'git switch -d 4e911440a9886c7c26ccbb4eb55f0bc2a5067b51'
                 sh 'pm2 delete greetings-app-staging || true'
                 sh 'pm2 start app.py --name greetings-app-staging -- --port 7002'
                 }
@@ -47,6 +48,8 @@ pipeline {
             steps {
                 echo 'testing in staging environment'
                 git branch: 'main', url: 'https://github.com/mtararujs/course-js-api-framework'
+                sh 'npm install'
+                sh 'npm run greetings staging'
             }
         }
         stage('deploy-to-preprod') {
@@ -54,6 +57,7 @@ pipeline {
                 echo 'deploying to preproduction environment'
                 git branch: 'main', url: 'https://github.com/mtararujs/python-greetings'
                 dir('python-greetings'){
+                sh 'git switch -d 4e911440a9886c7c26ccbb4eb55f0bc2a5067b51'
                 sh 'pm2 delete greetings-app-preprod || true'
                 sh 'pm2 start app.py --name greetings-app-preprod -- --port 7003'
                 }
@@ -63,6 +67,8 @@ pipeline {
             steps {
                 echo 'testing in preproduction environment'
                 git branch: 'main', url: 'https://github.com/mtararujs/course-js-api-framework'
+                sh 'npm install'
+                sh 'npm run greetings greetings_preprod'
             }
         }
         stage('deploy-to-prod') {
@@ -70,6 +76,7 @@ pipeline {
                 echo 'deploying to production environment'
                 git branch: 'main', url: 'https://github.com/mtararujs/python-greetings'
                 dir('python-greetings'){
+                sh 'git switch -d 4e911440a9886c7c26ccbb4eb55f0bc2a5067b51'
                 sh 'pm2 delete greetings-app-prod || true'
                 sh 'pm2 start app.py --name greetings-app-prod -- --port 7004'
                 }
@@ -79,6 +86,8 @@ pipeline {
             steps {
                 echo 'testing in production environment'
                 git branch: 'main', url: 'https://github.com/mtararujs/course-js-api-framework'
+                sh 'npm install'
+                sh 'npm run greetings greetings_prod'
             }
         }
     }
