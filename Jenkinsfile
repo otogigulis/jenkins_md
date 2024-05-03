@@ -1,3 +1,5 @@
+//
+
 pipeline {
     agent any
 
@@ -49,7 +51,7 @@ pipeline {
                 echo 'testing in staging environment'
                 git branch: 'main', url: 'https://github.com/mtararujs/course-js-api-framework'
                 sh 'npm install'
-                //sh 'npm run greetings greetings_staging'
+                sh 'npm run greetings greetings_stg'
             }
         }
         stage('deploy-to-preprod') {
@@ -69,6 +71,7 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/mtararujs/course-js-api-framework'
                 sh 'npm install'
                 //sh 'npm run greetings greetings_preprod'
+                //neeksistē lol!
             }
         }
         stage('deploy-to-prod') {
