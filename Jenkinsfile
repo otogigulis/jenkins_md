@@ -14,6 +14,7 @@ pipeline {
             steps {
                 echo 'deploying to development environment'
                 git branch: 'main', url: 'https://github.com/mtararujs/python-greetings'
+                sh 'npm install pm2 -g'
                 sh 'pm2 delete greetings-app-dev || true'
                 sh 'pm2 start app.py --name greetings-app-dev -- --port 7001'
             }
