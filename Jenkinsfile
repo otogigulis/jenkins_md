@@ -33,8 +33,9 @@ pipeline {
             steps {
                 echo 'deploying to staging environment'
                 git branch: 'main', url: 'https://github.com/mtararujs/python-greetings'
+                dir('python-greetings'){
                 sh 'pm2 delete greetings-app-staging || true'
-                sh 'pm2 start app.py --name greetings-app-staging -- --port 7002'
+                sh 'pm2 start app.py --name greetings-app-dev -- --port 7002'}
             }
         }
         stage('tests-on-staging') {
@@ -47,8 +48,9 @@ pipeline {
             steps {
                 echo 'deploying to preproduction environment'
                 git branch: 'main', url: 'https://github.com/mtararujs/python-greetings'
+                dir('python-greetings'){
                 sh 'pm2 delete greetings-app-preprod || true'
-                sh 'pm2 start app.py --name greetings-app-preprod -- --port 7003'
+                sh 'pm2 start app.py --name greetings-app-dev -- --port 7003'}
             }
         }
         stage('tests-on-preprod') {
@@ -61,8 +63,10 @@ pipeline {
             steps {
                 echo 'deploying to production environment'
                 git branch: 'main', url: 'https://github.com/mtararujs/python-greetings'
+                dir('python-greetings'){
                 sh 'pm2 delete greetings-app-prod || true'
-                sh 'pm2 start app.py --name greetings-app-prod -- --port 7004'
+                sh 'pm2 start app.py --name greetings-app-dev -- --port 7004'}
+            }
             }
         }
         stage('tests-on-prod') {
