@@ -49,7 +49,7 @@ pipeline {
                 echo 'testing in staging environment'
                 git branch: 'main', url: 'https://github.com/mtararujs/course-js-api-framework'
                 sh 'npm install'
-                sh 'npm run greetings greetings_staging'
+                //sh 'npm run greetings greetings_staging'
             }
         }
         stage('deploy-to-preprod') {
@@ -68,7 +68,7 @@ pipeline {
                 echo 'testing in preproduction environment'
                 git branch: 'main', url: 'https://github.com/mtararujs/course-js-api-framework'
                 sh 'npm install'
-                //sh 'npm run greetings greetings_preprod'
+                sh 'npm run greetings greetings_preprod'
             }
         }
         stage('deploy-to-prod') {
